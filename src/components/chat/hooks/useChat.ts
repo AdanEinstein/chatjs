@@ -43,5 +43,5 @@ export default function useChat() {
     }
   }
 
-  return { messages, pending, handleKeyUp, form }
+  return { messages, pending, handleKeyUp, form, sendMessage}
 }

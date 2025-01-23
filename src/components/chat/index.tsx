@@ -6,9 +6,10 @@ import { Spinner } from "@/components/ui/spinner";
 import useChat from "./hooks/useChat";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Notifications } from "react-push-notification";
+import { Button } from "../ui/button";
 
 export default function Chat() {
-  const { messages, pending, handleKeyUp, form } = useChat()
+  const { messages, pending, handleKeyUp, form, sendMessage } = useChat()
 
   return (
     <div className="flex flex-col gap-1 w-4/6">
@@ -34,13 +35,19 @@ export default function Chat() {
             <FormItem>
               <FormLabel>Message:</FormLabel>
               <FormControl>
-                <Input {...field} onKeyUp={handleKeyUp(form.handleSubmit)} enterKeyHint="done"/>
+                <Input {...field} onKeyUp={handleKeyUp(form.handleSubmit)} enterKeyHint="done" />
               </FormControl>
-              <FormDescription>Pressione ENTER para enviar</FormDescription>
+              <FormDescription className="md:block hidden">Pressione ENTER para enviar</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+        <Button
+          className="block md:hidden bg-blue-500 text-white px-4 py-2 rounded mt-2"
+          onClick={form.handleSubmit(sendMessage)}
+        >
+          Send
+        </Button>
       </Form>
 
       <Separator className="my-3" />
