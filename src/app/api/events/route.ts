@@ -1,3 +1,4 @@
+import { Message } from "@/types/globals";
 import EventEmitter from "events";
 
 const refreshEvent = new EventEmitter();
@@ -5,8 +6,8 @@ const refreshEvent = new EventEmitter();
 export async function GET(req: Request) {
     const stream = new ReadableStream({
         start(controller) {
-            const listener = (body: string) => {
-                controller.enqueue(`data: ${JSON.stringify({ message: body })}\n\n`);
+            const listener = (msg: Message) => {
+                controller.enqueue(`data: ${JSON.stringify(msg)}\n\n`);
             };
 
             refreshEvent.on("refresh", listener);
@@ -29,7 +30,7 @@ export async function GET(req: Request) {
 
 
 export async function POST(req: Request) {
-    const formData = await req.formData();
-    refreshEvent.emit("refresh", formData.get('data'))
+    const message = await req.json();
+    refreshEvent.emit("refresh", message)
     return new Response("Event Emitted", { status: 200 });
 }
