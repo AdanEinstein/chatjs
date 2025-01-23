@@ -12,7 +12,7 @@ export default function Chat() {
   const { messages, pending, handleKeyUp, form, sendMessage } = useChat()
 
   return (
-    <div className="flex flex-col gap-1 w-4/6">
+    <div className="flex flex-col gap-1 md:w-4/6 w-10/12">
       <h1 className="my-4 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">ChatJS</h1>
       <Separator />
       <Form {...form}>
