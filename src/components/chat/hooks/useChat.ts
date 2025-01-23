@@ -19,7 +19,7 @@ export default function useChat() {
       eventSourceRef.current = new EventSource("/api/events")
     eventSourceRef.current.onmessage = (event) => {
       const parsedMessage = JSON.parse(event.data) as Message;
-      setMessages((prev) => [parsedMessage, ...prev]);
+      setMessages((prev) => [...prev, parsedMessage]);
       if (parsedMessage.user != form.getValues('user'))
         addNotification({
           title: 'New Message',
@@ -45,5 +45,5 @@ export default function useChat() {
     }
   }
 
-  return { messages, pending, handleKeyUp, form, sendMessage}
+  return { messages, pending, handleKeyUp, form, sendMessage }
 }
