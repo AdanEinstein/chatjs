@@ -33,7 +33,8 @@ export default function useChat() {
   function sendMessage(data: SchemaType) {
     startTransition(async () => {
       await fetch("/api/events", { method: "POST", body: JSON.stringify(data) })
-      form.resetField("message")
+      form.setValue("message", "")
+      form.setFocus("message")
     })
   }
 
