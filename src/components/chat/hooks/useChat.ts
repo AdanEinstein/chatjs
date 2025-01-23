@@ -38,7 +38,7 @@ export default function useChat() {
 
   function handleKeyUp(callback: UseFormHandleSubmit<SchemaType>) {
     return (event: KeyboardEvent<HTMLInputElement>) => {
-      if (event.code != 'Enter') return
+      if (event.code != 'Enter' || event.keyCode !== 13) return
       callback(sendMessage)(event)
     }
   }

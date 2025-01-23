@@ -34,7 +34,7 @@ export default function Chat() {
             <FormItem>
               <FormLabel>Message:</FormLabel>
               <FormControl>
-                <Input {...field} onKeyUp={handleKeyUp(form.handleSubmit)} />
+                <Input {...field} onKeyUp={handleKeyUp(form.handleSubmit)} enterKeyHint="done"/>
               </FormControl>
               <FormDescription>Pressione ENTER para enviar</FormDescription>
               <FormMessage />
