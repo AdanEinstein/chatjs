@@ -7,21 +7,11 @@ import useChat from "./hooks/useChat";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Notifications } from "react-push-notification";
 import { Button } from "../ui/button";
+import useScroll from "./hooks/useScroll";
 
 export default function Chat() {
   const { messages, pending, handleKeyUp, form, sendMessage } = useChat();
-  const [isAtBottom, setIsAtBottom] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY;
-      setIsAtBottom(scrolled >= scrollableHeight - 50); // Ajuste o offset conforme necessário
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { isAtBottom } = useScroll();
 
   return (
     <div className="flex flex-col gap-1 md:w-4/6 w-10/12">
