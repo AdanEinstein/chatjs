@@ -11,7 +11,7 @@ import useScroll from "./hooks/useScroll";
 
 export default function Chat() {
   const { messages, pending, handleKeyUp, form, sendMessage } = useChat();
-  const { isAtBottom } = useScroll();
+  const { isAtBottom, isKeyboardOpen } = useScroll();
 
   return (
     <div className="flex flex-col gap-1 md:w-4/6 w-10/12">
@@ -39,7 +39,7 @@ export default function Chat() {
       )}
       <Separator />
       <Form {...form}>
-        {!isAtBottom && (
+        {(!isAtBottom || isKeyboardOpen) && (
           <div className="fixed bottom-0 left-0 w-full shadow-md p-4">
             <FormField
               control={form.control}
