@@ -19,7 +19,7 @@ export default function useChat() {
       eventSourceRef.current = new EventSource("/api/events")
     eventSourceRef.current.onmessage = (event) => {
       const parsedMessage = JSON.parse(event.data) as Message;
-      setMessages((prev) => [...prev, parsedMessage]);
+      setMessages((prev) => [parsedMessage, ...prev]);
       if (parsedMessage.user != form.getValues('user'))
         addNotification({
           title: 'New Message',

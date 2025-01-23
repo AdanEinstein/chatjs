@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="w-full py-4">
       <div className="container mx-auto flex items-center justify-center gap-3">
-        <p className="text-lg">
+        <p className="text-sm">
           Desenvolvido por <span className="font-bold">Adan Einstein</span>
         </p>
         <Link
@@ -15,7 +15,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="bg-blue-500 text-white p-1 rounded-sm"
         >
-          <Linkedin />
+          <Linkedin size={15} />
         </Link>
       </div>
     </footer>
